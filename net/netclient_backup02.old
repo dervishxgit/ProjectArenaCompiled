@@ -55,14 +55,12 @@ socket.on('playermove', function (
     if (otherplayer) {
         var health = argsArray.health;
         var armor = argsArray.armor;
-        var lives = argsArray.lives;
         otherplayer.pos.x = argsArray.positionx;
         otherplayer.pos.y = argsArray.positiony;
         otherplayer.incSetNetAnim(argsArray.iNetAnim);
         otherplayer.flip = argsArray.flip;
         otherplayer.setHealth(health);
-        otherplayer.setArmor(armor);
-        otherplayer.setLives(lives);    
+        otherplayer.setArmor(armor);    
     }
 });
 
@@ -101,10 +99,6 @@ socket.on('clientSpawnNetProjectileCopy', function(/*args*/) {
 
 socket.on('clientSetWeatherOrbTouched', function(bool){
     ig.game.theWeather.setOrbTouched(true);
-});
-
-socket.on('clientSetWeatherType', function(weatherType){
-    ig.game.theWeather.selectWeatherType(weatherType);
 });
 
 socket.on('addplayer', function (playerlist, otherplayername) {

@@ -89,6 +89,10 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit('clientSetWeatherOrbTouched', bool);
     });
 
+    socket.on('serverBroadCastWeatherType' , function(weatherType) {
+        socket.broadcast.emit('clientSetWeatherType', weatherType);
+    });
+
     ///////////////////////////////////////////
     //on disconnect from a client
     socket.on('disconnect', function () {
@@ -99,7 +103,7 @@ io.sockets.on('connection', function (socket) {
             }
         }
         socket.broadcast.emit('disconnectmessage', socket.clientname);
-        socket.broadcast.emit('netreplayer', playerlist);
+        //socket.broadcast.emit('netreplayer', playerlist);
 
 
 
