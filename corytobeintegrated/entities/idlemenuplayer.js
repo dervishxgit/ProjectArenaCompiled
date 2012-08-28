@@ -24,7 +24,7 @@ ig.module(
 			this.woodanim = new ig.Animation( this.woodSheet, 0.1, [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] );
 			this.fishanim = new ig.Animation( this.fishSheet, 0.1, [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] );
 			this.roboanim = new ig.Animation( this.roboSheet, 0.1, [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] );
-			this.wizaanim = new ig.Animation( this.wizaSheet, 0.1, [12, 13, 14, 15, 16] );
+			this.wizaanim = new ig.Animation( this.wizaSheet, 0.15, [12, 13, 14, 15, 16] );
 		},
 		draw: function() {
 			if ( Characterselectdatapass.Spritesheetsto == 1 ) {

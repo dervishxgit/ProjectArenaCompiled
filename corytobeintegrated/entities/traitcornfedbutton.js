@@ -30,10 +30,18 @@ ig.module(
 		//any other init varialbles
 	},
 	update: function() {
-	this.parent();
+		if ( Characterselectdatapass.Physiquesto ) {
+			this.setState( 'deactive' );
+		}
+		else if ( Characterselectdatapass.Physiquesto == false ) {
+			this.setState( 'idle' );
+		}
+		this.parent();
+	},
+	pressed: function() {
+		Characterselectdatapass.Physiquesto = true;
 	},
 	pressedUp: function() {
-		Characterselectdatapass.Physiquesto = 1;
 	}
   }); // line end entitytestbutton
 });

@@ -105,30 +105,15 @@ CharacterSelect = ig.Game.extend({
 		this.parent();
 	}
 });
-// MyGame = ig.Game.extend({	
-	// font: new ig.Font( 'media/04b03.font.png' ),	
-	// init: function() {
-		// // Initialize your game here; bind keys etc.
-	// },
-	// update: function() {
-		// this.parent();
-	// },	
-	// draw: function() {
-		// // Draw all entities and backgroundMaps
-		// this.parent();	
-		// // Add your own drawing code here
-		// var x = ig.system.width/2,
-			// y = ig.system.height/2;		
-		// this.font.draw( 'It Works!', x, y, ig.Font.ALIGN.CENTER );
-	// }
-// });
-
 MyGame = ig.Game.extend({
 
         gravity: 1000,
         // Load a font
         //font: new ig.Font( 'media/04b03.font.png' ),
         font: new ig.Font('media/04b04.font.png'),
+		//Win and Loss states
+		win: false,
+		loss: false, 
 
         playerList: {
             thisPlayer: null,
@@ -195,7 +180,13 @@ MyGame = ig.Game.extend({
             this.theWeather.update();
 
             //console.log(this.playerList);
-
+			//Win and Loss checker
+			if ( win == true ) {
+				ig.system.setGame(WinScreen);
+			}
+			else if ( loss == true ) {
+				ig.system.setGame(LooseScreen);
+			}
         },
 
         draw: function () {
@@ -246,41 +237,113 @@ MyGame = ig.Game.extend({
 WinScreen = ig.Game.extend({
 //A slightly transparent screen with a win graphic, press 'key' to continue.
 //OPTIONS: CONTINUE(MainMenu)
-	Background: new ig.Image( 'media/winBackground.jpg' ),
-	Foreground: new ig.Image( 'media/winForeground.png' ),
+	Background: new ig.Image( 'media/winBackground.png' ),
+	woodSheet: new ig.AnimationSheet( 'media/SPRITES/Wood_spritesheet.png', 200, 200 ),
+	fishSheet: new ig.AnimationSheet( 'media/SPRITES/wolfMatthew_Karl_SpriteSheet.png', 200, 200 ),
+	roboSheet: new ig.AnimationSheet( 'media/SPRITES/cameronBradfield_Sprite_Sheet_Fixed.png', 200, 200 ),
+	wizaSheet: new ig.AnimationSheet( 'media/SPRITES/Wizard_Sprite_Sheet_Fixeded02.png', 200, 200 ),	
+	woodanim: null,
+	fishanim: null,
+	roboanim: null,
+	wizaanim: null,
 	init: function() {
-	
+		this.setupAnim();
+	},
+	setupAnim: function() {
+		this.woodanim = new ig.Animation( this.woodSheet, 0.1, [82, 83, 84, 85, 86, 87, 88, 89] );
+		this.fishanim = new ig.Animation( this.fishSheet, 0.1, [82, 83, 84, 85, 86, 87, 88, 89] );
+		this.roboanim = new ig.Animation( this.roboSheet, 0.1, [82, 83, 84, 85, 86, 87, 88, 89] );
+		this.wizaanim = new ig.Animation( this.wizaSheet, 0.15, [50, 51, 52, 53, 54, 55, 56] );
 	},
 	update: function() {
 		if(ig.input.released('continue')){
 			ig.system.setGame(MyGame)
+		};
+		if ( Characterselectdatapass.Spritesheetsto == 1 ) {
+			this.woodanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 2 ) {
+			this.fishanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 3 ) {
+			this.roboanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 4 ) {
+			this.wizaanim.update();
 		};
 		this.parent();
 	},
 	draw: function() {
 		this.parent();
 		this.Background.draw( 0, 0 );
-		this.Foreground.draw( 0, 0 );
+		if ( Characterselectdatapass.Spritesheetsto == 1 ) {
+			this.woodanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 200 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 2 ) {
+			this.fishanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 200 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 3 ) {
+			this.roboanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 200 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 4 ) {
+			this.wizaanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 200 );
+		};
 	}
 });
 LooseScreen = ig.Game.extend({
 //A slightly transparent screen with a loss graphic, press 'key' to continue.
 //OPTIONS: CONTINUE(MainMenu)
-	Background: new ig.Image( 'media/loseBackground.jpg' ),
-	Foreground: new ig.Image( 'media/loseForeground.png' ),
+	Background: new ig.Image( 'media/loseBackground.png' ),
+	woodSheet: new ig.AnimationSheet( 'media/SPRITES/Wood_spritesheet.png', 200, 200 ),
+	fishSheet: new ig.AnimationSheet( 'media/SPRITES/wolfMatthew_Karl_SpriteSheet.png', 200, 200 ),
+	roboSheet: new ig.AnimationSheet( 'media/SPRITES/cameronBradfield_Sprite_Sheet_Fixed.png', 200, 200 ),
+	wizaSheet: new ig.AnimationSheet( 'media/SPRITES/Wizard_Sprite_Sheet_Fixeded02.png', 200, 200 ),	
+	woodanim: null,
+	fishanim: null,
+	roboanim: null,
+	wizaanim: null,
 	init: function() {
-	
+		this.setupAnim();
+	},
+	setupAnim: function() {
+		this.woodanim = new ig.Animation( this.woodSheet, 0.1, [90, 91, 92, 93, 94, 95, 96, 97] );
+		this.fishanim = new ig.Animation( this.fishSheet, 0.1, [90, 91, 92, 93, 94, 95, 96, 97] );
+		this.roboanim = new ig.Animation( this.roboSheet, 0.1, [90, 91, 92, 93, 94, 95, 96, 97] );
+		this.wizaanim = new ig.Animation( this.wizaSheet, 0.15, [57, 58, 59, 60, 61, 62, 63] );
 	},
 	update: function() {
 		if(ig.input.released('continue')){
 			ig.system.setGame(MyGame)
+		};
+		if ( Characterselectdatapass.Spritesheetsto == 1 ) {
+			this.woodanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 2 ) {
+			this.fishanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 3 ) {
+			this.roboanim.update();
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 4 ) {
+			this.wizaanim.update();
 		};
 		this.parent();
 	},
 	draw: function() {
 		this.parent();
 		this.Background.draw( 0, 0 );
-		this.Foreground.draw( 0, 0 );
+		if ( Characterselectdatapass.Spritesheetsto == 1 ) {
+			this.woodanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 100 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 2 ) {
+			this.fishanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 100 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 3 ) {
+			this.roboanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 100 );
+		}
+		else if ( Characterselectdatapass.Spritesheetsto == 4 ) {
+			this.wizaanim.draw( ig.system.width / 2 - 100, ig.system.height / 2 - 100 );
+		};
 	}
 });
 // Start the Game with 60fps, a resolution of 320x240, scaled

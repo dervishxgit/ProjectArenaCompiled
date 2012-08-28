@@ -31,6 +31,8 @@ ig.module(
 	},
 	update: function() {
 	this.parent();
+	},
+	pressedUp: function() {
 	}
   }); // line end entitytestbutton
 });

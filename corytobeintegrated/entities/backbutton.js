@@ -35,7 +35,7 @@ ig.module(
       this.parent( x, y, settings ); 
       this.addAnim( 'idle', 1, [0] );
       this.addAnim( 'active', 1, [1] );
-      this.addAnim( 'deactive', 1, [0] );
+      this.addAnim( 'deactive', 1, [1] );
       if ( this.text.length > 0 && this.font === null ) {
         this.font = ig.game.font || new ig.Font( 'media/04b03.font.png' );
       }

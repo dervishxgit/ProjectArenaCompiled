@@ -33,10 +33,6 @@ ig.module(
 	this.parent();
 	},
 	pressedUp: function() {
-		Characterselectdatapass.Spritesheetsto--;
-		if ( Characterselectdatapass.Spritesheetsto < 1) {
-			Characterselectdatapass.Spritesheetsto = 4;
-		};
 	}
   }); // line end entitytestbutton
 });

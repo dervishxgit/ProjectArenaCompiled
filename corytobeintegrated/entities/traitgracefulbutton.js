@@ -30,10 +30,18 @@ ig.module(
 		//any other init varialbles
 	},
 	update: function() {
-	this.parent();
+		if ( Characterselectdatapass.Tactilitysto == false ) {
+			this.setState( 'deactive' );
+		}
+		else if ( Characterselectdatapass.Tactilitysto ) {
+			this.setState( 'idle' );
+		}
+		this.parent();
+	},
+	pressed: function() {
+		Characterselectdatapass.Tactilitysto = false;
 	},
 	pressedUp: function() {
-		Characterselectdatapass.Tactilitysto = 0;
 	}
   }); // line end entitytestbutton
 });
